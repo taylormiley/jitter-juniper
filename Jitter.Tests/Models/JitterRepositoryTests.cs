@@ -20,6 +20,7 @@ namespace Jitter.Tests.Models
             var data_source = data_store.AsQueryable<JitterUser>();
             // HINT HINT: var data_source = (data_store as IEnumerable<JitterUser>).AsQueryable();
             // Convince Linq that our Mock DbSet is a (relational) Data store 
+
             mock_set.As<IQueryable<JitterUser>>().Setup(data => data.Provider).Returns(data_source.Provider);
             mock_set.As<IQueryable<JitterUser>>().Setup(data => data.Expression).Returns(data_source.Expression);
             mock_set.As<IQueryable<JitterUser>>().Setup(data => data.ElementType).Returns(data_source.ElementType);
@@ -44,7 +45,6 @@ namespace Jitter.Tests.Models
             mock_set = null;
             repository = null;
         }
-
 
         [TestMethod]
         public void JitterContextEnsureICanCreateInstance()
@@ -77,10 +77,12 @@ namespace Jitter.Tests.Models
             // This is Stubbing the JitterUsers property getter
             mock_context.Setup(a => a.JitterUsers).Returns(mock_set.Object);
             JitterRepository repository = new JitterRepository(mock_context.Object);
+
             // Act
             var actual = repository.GetAllUsers();
             // Assert
-            //Assert.AreEqual("adam1", actual.First().Handle);
+
+            Assert.AreEqual("adam1", actual.First().Handle);
             CollectionAssert.AreEqual(expected, actual);
         }
 
