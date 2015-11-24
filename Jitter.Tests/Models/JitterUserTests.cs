@@ -66,5 +66,7 @@ namespace Jitter.Tests.Models
             // Assert
             CollectionAssert.AreEqual(list_of_users, actual_users);
         }
+
+
     }
 }
