@@ -9,6 +9,7 @@ namespace Jitter.Models
     public class Jot
     {
         public object Author { get; set; }
+        [Required]
         public string Content { get; set; }
         public DateTime Date { get; set; }
         [Key]
