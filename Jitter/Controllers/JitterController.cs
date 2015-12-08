@@ -12,6 +12,8 @@ namespace Jitter.Controllers
         // Maybe the Public feed here?
         public ActionResult Index()
         {
+            //ApplicationUser
+            ApplicationUserManager _userManager = HttpContext.GetOwinContext().
             return View();
         }
 
